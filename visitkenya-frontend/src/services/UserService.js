@@ -6,6 +6,7 @@ export default class UserService{
     constructor(){
 
     }
+    
     registerUser(user){
         const url = `${APIURL}/register/`;
         return axios.post(url,user)
