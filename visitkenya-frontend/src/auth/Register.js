@@ -6,12 +6,26 @@ const userService = new UserService();
 export default class Registration{
     constructor(){
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this)
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event){
-
+        this.handleRegisterUser();
+        event.preventDefault();
     }
+
+    handleRegisterUser(){
+        userService.registerUser({
+            'username': this.refs.username.value,
+            'full_name':this.refs.fullName.value,
+            'email':this.refs.email.value,
+            'password':this.refs.password.value,
+        }).then(response => 
+            alert('You have successfully registered.')
+        ).catch(()=>{
+            alert('Fill the form correctly.')
+        });
+    }
+
     render(){
         return(
             <div className="ui grid">
