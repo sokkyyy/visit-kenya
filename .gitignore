@@ -1,0 +1,4 @@
+virtual
+.pyc*
+node_modules
+.vscode
