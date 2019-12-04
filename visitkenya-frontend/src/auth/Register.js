@@ -1,10 +1,10 @@
 import React,{ Component } from 'react';
-import UserService from '../auth/Register';
+import UserService from '../services/UserService';
 
 const userService = new UserService();
 
-export default class Registration{
-    constructor(){
+export default class Registration extends Component {
+    constructor(props){
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -14,6 +14,7 @@ export default class Registration{
     }
 
     handleRegisterUser(){
+        console.log(this.refs.password.value);
         userService.registerUser({
             'username': this.refs.username.value,
             'full_name':this.refs.fullName.value,
@@ -59,7 +60,7 @@ export default class Registration{
               </div>
 
 
-              <div classNamess="four wide column"></div>
+              <div className="four wide column"></div>
             </div>
         );
     }

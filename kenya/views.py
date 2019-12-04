@@ -1,19 +1,29 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework import status
+from rest_framework import status,permissions
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer,UserSerializerWithToken
+from django.http import HttpResponseRedirect
+from rest_framework.views import APIView
 
-@api_view(['GET','POST'])
-def create_user(request):
+@api_view(['GET'])
+def current_user(request):
+    '''
+    Determine the current user by their token, and return their token.
+    '''
+    serializer = UserSerializer(request.user)
+    return Response(serializer.data)
+
+class UserList(APIView):
     '''
     Create new user.
     '''
     
-    if request.method == 'POST':
-        serializer = UserSerializer(data=request.data)
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self,request,format=None):
+        serializer = UserSerializerWithToken(data=request.data)
         if serializer.is_valid():
-            # User.objects.create_user() --> FOR HASHING PASSWORDS
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

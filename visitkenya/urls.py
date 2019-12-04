@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from kenya import views
 from django.conf.urls import url
-
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/register/$',views.create_user),
+    url(r'^api/register/$',views.UserList.as_view()),
     url(r'^api/user/(\w+)$',views.user_details),
+    url(r'^api/token-auth/$',obtain_jwt_token),
+    url(r'^api/current_user/$', views.current_user),
 ]
