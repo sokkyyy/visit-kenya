@@ -11,4 +11,9 @@ export default class UserService{
         const url = `${APIURL}register/`;
         return axios.post(url,user);
     }
+
+    loginUser(data){
+        const url = `${APIURL}token-auth/`;
+        return axios.post(url,data); 
+    }
 }
