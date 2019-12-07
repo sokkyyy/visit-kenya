@@ -26,18 +26,17 @@ export default class Registration extends Component {
     }
     
     handleSubmit(event){
-        this.handleRegisterUser();
-        event.preventDefault();
-        console.log(this.state)
+      this.handleRegisterUser();
+      event.preventDefault();
     }
 
     handleRegisterUser(){
-        userService.registerUser(this.state).then(response =>{ 
-            alert('You have successfully registered.');
-            this.props.history.push('/login');
-        }).catch(()=>{
-            alert('Fill the form correctly.');
-        });
+      userService.registerUser(this.state).then(response =>{ 
+          alert('You have successfully registered.');
+          this.props.history.push('/login');
+      }).catch(()=>{
+          alert('Fill the form correctly.');
+      });
     }
 
     render(){

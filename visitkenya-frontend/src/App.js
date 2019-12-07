@@ -4,13 +4,9 @@ import { Route, Link } from 'react-router-dom';
 import Registration from './auth/Register';
 import Login from './auth/Login';
 import './App.css';
-import { Dropdown } from 'semantic-ui-react';
 import Home from './components/Home';
 
-// const dropdownOptionsAuth = [
-  // {key:1, text:'Sign Up', value: 1},
-  // {key:2, text:'Sign In', value: 2},
-// ]
+
 
 
 function Nav(props){
@@ -23,7 +19,7 @@ function Nav(props){
 
   const logged_in_nav = (
     <div role="list" className="ui link list">
-      <a role='listitem' className='item'>Logout</a>
+      <a role='listitem' className='item' onClick={props.logout_user}> Logout</a>
     </div>
   );
   
@@ -52,15 +48,31 @@ export default class App extends Component {
     super(props);
     this.state = {
       logged_in : localStorage.getItem('token') ? true : false,
-    }
+    };
+    this.handleLogout = this.handleLogout.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleSubmit(){
+    this.setState({logged_in:true});
+  }
+  
+
+
+  handleLogout(){
+    localStorage.removeItem('token');
+    this.setState({logged_in:false});
+  }
+
   render(){
     return (
       <BrowserRouter>
-        <Nav logged_in={this.state.logged_in}></Nav>
+        <Nav logged_in={this.state.logged_in} logout_user={this.handleLogout}></Nav>
           <Route path='/register' exact component={Registration}></Route>
-          <Route path='/login' exact component={Login}></Route>
+          <Route path='/login' exact render={(props)=> <Login {...props} submit={this.handleSubmit}></Login> }></Route>
+          <Route path='/home' exact render={(props)=> <Home {...props} sup={this.state.logged_in}></Home>} ></Route>
       </BrowserRouter>      
     );
   }
+
 }

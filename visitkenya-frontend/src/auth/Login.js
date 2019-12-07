@@ -4,7 +4,7 @@ import UserService from '../services/UserService';
 const userService = new UserService();
 
 export default class Login extends Component{
-    
+
     constructor(props){
         super(props);
         
@@ -14,41 +14,45 @@ export default class Login extends Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
+    
     handleChange(event){
         const value = event.target.value;
         this.setState({
             [event.target.name]:value
         });
     }
-
+    
     handleSubmit(event){
         event.preventDefault();
-        
-        this.handleLogin();
+        // const credentials = this.state;
+        // this.props.submit(credentials);   
+        this.handleLogin()
     }
 
     handleLogin(){
         userService.loginUser(this.state).then(response => {
             localStorage.setItem('token',response.data.token);
-            this.props.history.push('/');
+            this.props.submit();
+            this.props.history.push('/home');
         }).catch(()=>{
-            alert('invalid credentials');
+            alert('invalid credentials'); 
         })
     }
 
     render(){
         return(
-            <div class="ui grid">
-              <div class="four wide column"></div>
-              <div class="four wide column"></div>
-              <div class="four wide column"></div>
-              <div class="four wide column"></div>
-              <div class="four wide column"></div>
+            <div className="ui grid">
+              <div className="four wide column"></div>
+              <div className="four wide column"></div>
+              <div className="four wide column"></div>
+              <div className="four wide column"></div>
+              <div className="four wide column"></div>
 
 
-              <div class="eight wide column">
+              <div className="eight wide column">
                 <form className="ui form" onSubmit={this.handleSubmit}>
 
                     <div className="field">
@@ -66,7 +70,7 @@ export default class Login extends Component{
                 </form>
               </div>
 
-              <div class="four wide column"></div>
+              <div className="four wide column"></div>
             </div>
         );
     }
