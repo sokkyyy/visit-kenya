@@ -18,6 +18,8 @@ from django.urls import path
 from kenya import views
 from django.conf.urls import url
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +29,6 @@ urlpatterns = [
     url(r'^api/token-auth/refresh/$',refresh_jwt_token),
     url(r'^api/current_user/$', views.current_user),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

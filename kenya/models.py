@@ -8,3 +8,13 @@ class User(AbstractUser):
     
     def __str__(self):
         return self.full_name
+
+class Destination(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    def __str__(self):
+        return self.name
+
+class DestinationGallery(models.Model):
+    image = models.ImageField(upload_to='gallery')
+    destination = models.ForeignKey(Destination, on_delete=models.CASCADE ,related_name='destination_gallery')

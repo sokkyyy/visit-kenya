@@ -29,10 +29,14 @@ export default class Home extends Component {
         error => console.log(error)
       );
     }
+    
   }
 
 
   render() {
-    return <div onClick={this.refreshPage}>Ray</div>;
+    return (
+      <div>Ray</div>
+    );
   }
+
 }

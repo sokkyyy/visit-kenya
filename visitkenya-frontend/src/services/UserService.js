@@ -17,6 +17,7 @@ export default class UserService{
 
     getUser(){
         const url = `${APIURL}current_user/`;
+        
         return axios.get(url,{
             headers:{ Authorization: `JWT ${localStorage.getItem('token')}` }
         });
