@@ -1,24 +1,36 @@
 import React, { Component } from "react";
+import UserService from '../services/UserService';
+
+const userService = new UserService();
+
 
 export default class Home extends Component {
+  
   constructor(props) {
     super(props);
+
     this.state = {
       logged_in: localStorage.getItem ? true : false,
     };
-    this.refreshPage = this.refreshPage.bind(this);
   }
-  componentDidMount() {
+
+  componentDidMount() {   
     if (localStorage.getItem("token")) {
       this.setState({ logged_in: true });
     } else {
       this.setState({ logged_in: false });
     }
-    console.log(this.props.sup);
+
+    if (this.state.logged_in) {
+      userService.getUser()
+      .then(
+        response => console.log(response.data)
+      ).catch(
+        error => console.log(error)
+      );
+    }
   }
-  refreshPage(){
-      window.location.reload(false);
-  }
+
 
   render() {
     return <div onClick={this.refreshPage}>Ray</div>;
