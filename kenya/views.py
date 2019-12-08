@@ -1,8 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status,permissions
-from .models import User
-from .serializers import UserSerializer,UserSerializerWithToken
+from .models import User,Destination,DestinationGallery
+from .serializers import UserSerializer,UserSerializerWithToken,DestinationSerializer
 from django.http import HttpResponseRedirect
 from rest_framework.views import APIView
 
@@ -27,7 +27,18 @@ class UserList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
+class DestinationList(APIView):
+    '''
+    Get destinations from the db.
+    '''
+    def get(self,request,format=None):
+        all_destinations = Destination.objects.all()
+        serializers = DestinationSerializer(all_destinations, many=True)
+        return Response(serializers.data)
+
+
+
 @api_view(['GET'])
 def user_details(request,username):
     '''

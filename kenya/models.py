@@ -18,3 +18,5 @@ class Destination(models.Model):
 class DestinationGallery(models.Model):
     image = models.ImageField(upload_to='gallery')
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE ,related_name='destination_gallery')
+    def __unicode__(self):
+        return self.image

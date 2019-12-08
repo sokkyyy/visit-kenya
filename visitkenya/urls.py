@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^api/token-auth/$',obtain_jwt_token),
     url(r'^api/token-auth/refresh/$',refresh_jwt_token),
     url(r'^api/current_user/$', views.current_user),
+    url(r'^api/destinations/$', views.DestinationList.as_view()),
 ]
 
 if settings.DEBUG:

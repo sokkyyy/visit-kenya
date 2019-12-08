@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from .models import User
+from .models import User,Destination,DestinationGallery
 import time
 from django.conf import settings
 
@@ -34,3 +34,17 @@ class UserSerializerWithToken(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('token','full_name','username','email','password')
+
+class DestinationSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+    
+    def get_images(self,destination):
+        dest = []
+        img = DestinationGallery.objects.filter(destination=destination)
+        for i in img:
+            dest.append(i.image.url)
+        return dest
+        
+    class Meta: 
+        model = Destination
+        fields = ['name','description','images']  
