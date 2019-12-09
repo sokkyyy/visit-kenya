@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UserService from '../services/UserService';
 import DestinationService from '../services/DestinationService';
+import DestinationList from './DestinationsList';
 
 const userService = new UserService();
 const destinationService = new DestinationService();
@@ -22,22 +23,15 @@ export default class Home extends Component {
     } else {
       this.setState({ logged_in: false });
     }
-    const all_destinations = ''; 
-    
-    destinationService.getDestinations()
-    .then(
-      response => console.log(response.data)
-    )
-    .catch(
-      error => console.log(error)
-    );
 
   }
 
 
   render() {
     return (
-      <div>Ray</div>
+      <div>
+        <DestinationList />
+      </div>
     );
   }
 
