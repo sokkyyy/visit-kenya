@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import UserService from '../services/UserService';
+import DestinationService from '../services/DestinationService';
 
 const userService = new UserService();
-
+const destinationService = new DestinationService();
 
 export default class Home extends Component {
   
@@ -11,6 +12,7 @@ export default class Home extends Component {
 
     this.state = {
       logged_in: localStorage.getItem ? true : false,
+      destinations: '',
     };
   }
 
@@ -20,16 +22,16 @@ export default class Home extends Component {
     } else {
       this.setState({ logged_in: false });
     }
-
-    if (this.state.logged_in) {
-      userService.getUser()
-      .then(
-        response => console.log(response.data)
-      ).catch(
-        error => console.log(error)
-      );
-    }
+    const all_destinations = ''; 
     
+    destinationService.getDestinations()
+    .then(
+      response => console.log(response.data)
+    )
+    .catch(
+      error => console.log(error)
+    );
+
   }
 
 
