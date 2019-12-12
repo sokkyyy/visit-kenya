@@ -3,3 +3,6 @@
   flex-direction: row;
   margin: 5px;
 }
+body{
+  background-color: transparent;
+}

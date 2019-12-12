@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import UserService from '../services/UserService';
 import DestinationService from '../services/DestinationService';
 import DestinationList from './DestinationsList';
+import Carousel from 'react-material-ui-carousel'; 
+import cover1 from '../images/vk5.jpg';
+import cover2 from '../images/vk3.jpg';
+import '../css/Home.css';
 
 const userService = new UserService();
 const destinationService = new DestinationService();
+
 
 export default class Home extends Component {
   
@@ -23,13 +28,21 @@ export default class Home extends Component {
     } else {
       this.setState({ logged_in: false });
     }
-
   }
 
 
   render() {
+
+
     return (
       <div>
+        <div className='homeCarousel'>
+          <div className='test'>rrr</div>
+          <Carousel animation='slide'>
+            <img src={cover1} alt='intro' className='img1'></img>
+            <img src={cover2} alt='intro2'className='img2'></img>
+          </Carousel>
+        </div>
         <DestinationList />
       </div>
     );

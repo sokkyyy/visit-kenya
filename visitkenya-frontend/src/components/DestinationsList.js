@@ -13,7 +13,7 @@ export default class DestinationList extends React.Component {
         
     }
     
-    componentWillMount(){
+    componentDidMount(){
         destinationService.getDestinations()
         .then(
             response => {
@@ -21,8 +21,6 @@ export default class DestinationList extends React.Component {
             }
         )
         .catch(error => console.log(error));
-
-
     }
 
     render(){
