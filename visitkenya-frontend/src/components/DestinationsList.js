@@ -34,6 +34,7 @@ export default class DestinationList extends React.Component {
             all_destinations = this.state.destinations.map((dest)=>(
                 <Destination 
                     key={dest.pk}
+                    id={dest.pk}
                     name={dest.name}
                     images={dest.images}
                     loading={this.state.loading}

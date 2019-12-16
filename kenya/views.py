@@ -32,11 +32,18 @@ class DestinationList(APIView):
     '''
     Get destinations from the db.
     '''
+
+
     def get(self,request,format=None):
         all_destinations = Destination.objects.all()
         serializers = DestinationSerializer(all_destinations, many=True)
         return Response(serializers.data)
 
+@api_view(['GET'])    
+def get_destination(request,destination_id):
+    destination = Destination.objects.get(pk=destination_id)
+    serializers = DestinationSerializer(destination)
+    return Response(serializers.data)
 
 
 @api_view(['GET'])

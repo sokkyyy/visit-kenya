@@ -11,7 +11,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { maxWidth } from '@material-ui/system';
 import Carousel from 'react-material-ui-carousel'; 
-
+import Link from '@material-ui/core/Link'
 
 // MAKE STYLES FOR SKELETON AND CARD
 const useStyles = makeStyles(theme => ({
@@ -37,7 +37,7 @@ function CardDest(props){
             <CardHeader 
                 title={props.loading ? 
                 (<Skeleton variant='text' height={100} width='80%' />):
-                (<Typography variant='caption'>{props.name}</Typography>)}
+                (<a href={`destination/${props.id}`}><Typography variant='caption'>{props.name}</Typography></a>)}
             />
             {props.loading ? 
                 (<Skeleton variant='rect' className={classes.media} />) :
@@ -46,8 +46,9 @@ function CardDest(props){
                     title={props.name}
                     >
                         <Carousel animation='slide'>
-                            {props.images.map(image => (
-                                <img src={imagelocation + image} alt={props.name} height={190} width={300} />
+                            {props.images.map((image,index) => (
+                                 
+                                <img key={index + 1} src={imagelocation + image} alt={props.name} height={190} width={300} />
                             ))}
                         </Carousel>
 
@@ -65,7 +66,7 @@ export default class Destination extends Component {
     render(){
 
         return(
-            <CardDest loading={this.props.loading} images={this.props.images} name={this.props.name} />
+            <CardDest id={this.props.id} loading={this.props.loading} images={this.props.images} name={this.props.name} />
         );
     }
 }
