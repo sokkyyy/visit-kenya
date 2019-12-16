@@ -10,5 +10,11 @@ export default class DestinationService {
             headers:{ Authorization: `JWT ${localStorage.getItem('token')}` }
         });
     }
+    getDestination(destinationId){
+        const destUrl = `${apiUrl}destination/${destinationId}/`;
+        return axios.get(destUrl, {
+            headers:{ Authorization: `JWT ${localStorage.getItem('token')}` }
+        });
+    }
 
 }

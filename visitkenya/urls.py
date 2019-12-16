@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^api/token-auth/refresh/$',refresh_jwt_token),
     url(r'^api/current_user/$', views.current_user),
     url(r'^api/destinations/$', views.DestinationList.as_view()),
-    url(r'^api/destination/(\d+)/$',views.get_destination),
+    url(r'^api/destinations/destination/(\d+)/$',views.get_destination),
 ]
 
 if settings.DEBUG:
