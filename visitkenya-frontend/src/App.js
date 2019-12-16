@@ -6,7 +6,7 @@ import Login from './auth/Login';
 import './App.css';
 import Home from './components/Home';
 import Nav from './components/Nav';
-
+import DestinationDetails from './components/DestinationDetails';
 
 
 export default class App extends Component {
@@ -37,6 +37,7 @@ export default class App extends Component {
           <Route path='/register' exact component={Registration}></Route>
           <Route path='/login' exact render={(props)=> <Login {...props} submit={this.handleSubmit}></Login> }></Route>
           <Route path='/home' exact render={(props)=> <Home {...props} sup={this.state.logged_in}></Home>} ></Route>
+          <Route path='/destination/:id' component={DestinationDetails}></Route>
       </BrowserRouter>      
     );
   }
