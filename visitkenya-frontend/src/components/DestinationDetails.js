@@ -29,6 +29,14 @@ export default class DestinationDetails extends Component {
         
     }
     render(){
+
+        const center = {lat:this.state.destination.latitude, lng:this.state.destination.longitude};
+        
+        if(this.state.destination.latitude){
+            center.lat = +center.lat;
+            center.lng = +center.lng;
+        }
+
         return(
             <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -45,7 +53,10 @@ export default class DestinationDetails extends Component {
                     </Paper>
                 </Grid>
                 <Grid item xs={4}>
-                    <DestinationLocation />
+                    <DestinationLocation
+                        name={this.state.destination.name}
+                        center={center}
+                    />
                 </Grid>
                 <Grid item xs={2}>
                 </Grid>

@@ -13,7 +13,7 @@ class Destination(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     latitude = models.DecimalField(default=0.0000, max_digits=6, decimal_places=4)
-    longitute = models.DecimalField(default=0.0000,max_digits=6, decimal_places=4)
+    longitude = models.DecimalField(default=0.0000,max_digits=6, decimal_places=4)
     
     def __str__(self):
         return self.name

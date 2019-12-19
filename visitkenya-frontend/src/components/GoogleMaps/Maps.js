@@ -4,18 +4,19 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 
 
-const MapsComponent = () => <LocationOnIcon fontSize='large' style={{color: 'red'}} />;
+const MapsComponent = ({text}) => <div><LocationOnIcon fontSize='large' style={{color: 'red'}} />{text}</div>;
 
 export default class DestinationLocation extends Component {
     render(){
+        console.log(this.props.center);
         return(
             <div style={{height: '100vh', width: '100%'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{key : 'AIzaSyA-nOvq4gG17VS9AG6Nw-5fugZGpjgZUns'}} 
-                    defaultZoom={this.props.zoom}
-                    defaultCenter={this.props.center}
+                    defaultZoom={8}
+                    center={this.props.center}
                     >
-                        <MapsComponent lat={-2.6527} lng={37.2606} text="Location" />
+                        <MapsComponent lat={this.props.center.lat} lng={this.props.center.lng} text={this.props.name} />
 
                 </GoogleMapReact>
             </div>
@@ -25,10 +26,10 @@ export default class DestinationLocation extends Component {
 
 
 //Default prop for zoom
-DestinationLocation.defaultProps = {
-    center: {
-        lat: -2.6527,
-        lng: 37.2606,
-    },
-    zoom: 8,
-}
+// DestinationLocation.defaultProps = {
+    // center: {
+        // lat: this.props.lat,
+        // lng: this.props.lng,
+    // },
+    // zoom: 8,
+// }
