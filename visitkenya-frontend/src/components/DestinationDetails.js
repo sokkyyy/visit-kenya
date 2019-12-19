@@ -5,11 +5,26 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import DestinationLocation from './GoogleMaps/Maps';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 
 
 const destinationService = new DestinationService();
+const imagelocation = 'http://localhost:8000';
 
+function DestGallery(props){
+    return(
+        <Carousel showArrows={true} showThumbs={false}>
+            {props.images.map((image,index)=>(
+                <div>
+                    <img key={index + 1} src={imagelocation + image} alt={props.name} height={250} width={300} />
+                </div>
+            ))}
+        </Carousel>
+    );
+}
 
 export default class DestinationDetails extends Component {
     constructor(props){
@@ -45,20 +60,31 @@ export default class DestinationDetails extends Component {
                 </Grid>
                 <Grid item xs={6}>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                 </Grid>
-                <Grid item xs={4}>
-                    <Paper>
+                <Grid item xs={6} className='destDetails'>
+                    <Paper className='title'>
                         <Typography variant='h4'>{this.state.destination.name}</Typography>
+                        <Typography variant='p'>{this.state.destination.description}</Typography>
                     </Paper>
-                </Grid>
-                <Grid item xs={4}>
+                    
+                    <Typography variant='h6'>Gallery</Typography>
+
+                    <DestGallery images={this.state.destination.images?this.state.destination.images:[]} name={this.state.destination.name} />
+                    
+                    <Typography variant='h6'>Location</Typography>
+                    
                     <DestinationLocation
                         name={this.state.destination.name}
                         center={center}
+                        className='location'
                     />
+
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={4}>
+
+                </Grid>
+                <Grid item xs={1}>
                 </Grid>
 
                 <Grid item xs>

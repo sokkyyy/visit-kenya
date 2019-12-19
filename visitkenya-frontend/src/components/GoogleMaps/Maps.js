@@ -8,12 +8,11 @@ const MapsComponent = ({text}) => <div><LocationOnIcon fontSize='large' style={{
 
 export default class DestinationLocation extends Component {
     render(){
-        console.log(this.props.center);
         return(
-            <div style={{height: '100vh', width: '100%'}}>
+            <div style={{height: '50%', width: '100%'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{key : 'AIzaSyA-nOvq4gG17VS9AG6Nw-5fugZGpjgZUns'}} 
-                    defaultZoom={8}
+                    defaultZoom={9}
                     center={this.props.center}
                     >
                         <MapsComponent lat={this.props.center.lat} lng={this.props.center.lng} text={this.props.name} />

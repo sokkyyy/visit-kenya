@@ -1,3 +1,12 @@
-.details{
-    margin-top: 100px;
+.destDetails{
+    margin: 30px;
+}
+.title{
+    margin-bottom: 10px;
+}
+.location{
+    margin-top: 50px;
+}
+body {
+    height: 150%;
 }
