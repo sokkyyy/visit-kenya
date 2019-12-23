@@ -8,7 +8,7 @@ import DestinationLocation from './GoogleMaps/Maps';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GalleryModal from './GalleryModal';
-
+import RelatedDestinations from './RelatedDestinations';
 
 
 
@@ -41,6 +41,8 @@ export default class DestinationDetails extends Component {
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleMoveNext = this.handleMoveNext.bind(this);
         this.handleMovePrev = this.handleMovePrev.bind(this);
+        this.handleChangeDestination = this.handleChangeDestination.bind(this);
+        this.handleChangeStateDest = this.handleChangeStateDest.bind(this);
     }
 
     componentDidMount(){
@@ -79,6 +81,22 @@ export default class DestinationDetails extends Component {
         this.setState({
             photoIndex: (photoIndex + 1) % destination.images.length,
         });
+    }
+
+    handleChangeDestination(destinationId){
+        this.props.history.push(`/destination/${destinationId}`);
+        this.handleChangeStateDest(destinationId);
+
+    }
+
+    handleChangeStateDest(destinationId){
+        destinationService.getDestination(destinationId)
+        .then(response => {
+            this.setState({destination:response.data});
+            console.log(this.state.destination);
+        })
+        .catch(error => console.log(error));        
+
     }
 
     render(){
@@ -132,8 +150,10 @@ export default class DestinationDetails extends Component {
                     />
 
                 </Grid>
-                <Grid item xs={4}>
 
+                
+                <Grid item xs={4}>
+                    <RelatedDestinations destination={this.state.destination.name} changeDest={this.handleChangeDestination} />
                 </Grid>
                 <Grid item xs={1}>
                 </Grid>
