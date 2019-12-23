@@ -10,3 +10,9 @@
 body {
     height: 150%;
 }
+.detailsLoader{
+    padding-top: 200px;
+    padding-left: 150px;
+    width: 50%;
+
+}

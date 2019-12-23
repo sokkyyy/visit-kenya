@@ -9,7 +9,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GalleryModal from './GalleryModal';
 import RelatedDestinations from './RelatedDestinations';
-
+import AppLoader from './AppLoader';
 
 
 
@@ -35,6 +35,7 @@ export default class DestinationDetails extends Component {
             destination:{},
             isOpen:false,
             photoIndex:0,
+            loading:true,
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -49,8 +50,10 @@ export default class DestinationDetails extends Component {
         const { match: { params } } = this.props;
         destinationService.getDestination(params.id)
         .then(response => {
-            this.setState({destination:response.data});
-            console.log(this.state.destination);
+            setTimeout(()=>{
+                this.setState({destination:response.data});
+                this.setState({loading:false});                
+            }, 500);
         })
         .catch(error => console.log(error)); 
         
@@ -85,6 +88,7 @@ export default class DestinationDetails extends Component {
 
     handleChangeDestination(destinationId){
         this.props.history.push(`/destination/${destinationId}`);
+        this.setState({loading:true});
         this.handleChangeStateDest(destinationId);
 
     }
@@ -93,7 +97,7 @@ export default class DestinationDetails extends Component {
         destinationService.getDestination(destinationId)
         .then(response => {
             this.setState({destination:response.data});
-            console.log(this.state.destination);
+            this.setState({loading:false});
         })
         .catch(error => console.log(error));        
 
@@ -102,13 +106,16 @@ export default class DestinationDetails extends Component {
     render(){
 
         const center = {lat:this.state.destination.latitude, lng:this.state.destination.longitude};
-        
+        const { loading } = this.state;
+
         if(this.state.destination.latitude){
             center.lat = +center.lat;
             center.lng = +center.lng;
         }
 
         return(
+
+
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                 </Grid>
@@ -117,45 +124,50 @@ export default class DestinationDetails extends Component {
                 <Grid item xs={6}>
                 </Grid>
                 <Grid item xs={1}>
+                    
                 </Grid>
-                <Grid item xs={6} className='destDetails'>
-                    <Paper className='title'>
-                        <Typography variant='h4'>{this.state.destination.name}</Typography>
-                        <Typography>{this.state.destination.description}</Typography>
-                    </Paper>
-                    
-                    <Typography variant='h6'>Gallery</Typography>
+                {loading ? 
+                (<div className='detailsLoader'> <AppLoader /> </div>):  
+                (
+                    <Grid item xs={6} className='destDetails'>
+                        <Paper className='title'>
+                            <Typography variant='h4'>{this.state.destination.name}</Typography>
+                            <Typography>{this.state.destination.description}</Typography>
+                        </Paper>
 
-                    <DestGallery
-                        openModal={this.handleOpenModal}
-                        images={this.state.destination.images?this.state.destination.images:[]} 
-                        name={this.state.destination.name} 
-                    />
+                        <Typography variant='h6'>Gallery</Typography>
 
-                    <GalleryModal
-                        images={this.state.destination.images ? this.state.destination.images : []} 
-                        isOpen={this.state.isOpen} 
-                        photoIndex={this.state.photoIndex}
-                        closeModal={this.handleCloseModal} 
-                        movePrev={this.handleMovePrev}
-                        moveNext={this.handleMoveNext}
-                    />
-                    
-                    <Typography variant='h6'>Location</Typography>
-                    
-                    <DestinationLocation
-                        name={this.state.destination.name}
-                        center={center}
-                        className='location'
-                    />
+                        <DestGallery
+                            openModal={this.handleOpenModal}
+                            images={this.state.destination.images?this.state.destination.images:[]} 
+                            name={this.state.destination.name} 
+                        />
 
-                </Grid>
+                        <GalleryModal
+                            images={this.state.destination.images ? this.state.destination.images : []} 
+                            isOpen={this.state.isOpen} 
+                            photoIndex={this.state.photoIndex}
+                            closeModal={this.handleCloseModal} 
+                            movePrev={this.handleMovePrev}
+                            moveNext={this.handleMoveNext}
+                        />
+
+                        <Typography variant='h6'>Location</Typography>
+
+                        <DestinationLocation
+                            name={this.state.destination.name}
+                            center={center}
+                            className='location'
+                            />
+                    </Grid>
+                )
+                }
 
                 
+                <Grid item xs={1}>
+                </Grid>
                 <Grid item xs={4}>
                     <RelatedDestinations destination={this.state.destination.name} changeDest={this.handleChangeDestination} />
-                </Grid>
-                <Grid item xs={1}>
                 </Grid>
 
                 <Grid item xs>
@@ -163,7 +175,6 @@ export default class DestinationDetails extends Component {
                 </Grid>
 
           </Grid>
-
         );
     }
 }

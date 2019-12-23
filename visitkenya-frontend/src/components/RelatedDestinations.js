@@ -41,10 +41,17 @@ function RelatedDestCard(props){
                 className={classes.media}
                 title={props.name}
         >
-            <Carousel showArrows={true} showThumbs={false}>
+            <Carousel 
+                    showArrows={false} 
+                    showThumbs={false} 
+                    autoPlay={true} 
+                    infiniteLoop={true}
+                    showIndicators={false}
+                    showStatus={false} 
+            >
                 {props.images.map((image,index) => (
                      
-                    <img key={index + 1} src={imagelocation + image} alt={props.name} height={190} width={300} />
+                    <img key={index + 1} src={imagelocation + image} alt={props.name} height={100} width={300} />
                 ))}
             </Carousel>
 
