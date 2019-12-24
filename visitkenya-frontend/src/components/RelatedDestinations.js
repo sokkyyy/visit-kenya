@@ -16,10 +16,14 @@ const imagelocation = 'http://localhost:8000';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        maxWidth:345,
+        maxWidth:200,
+        width:200,
+    },
+    cardSelected: {
+        maxWidth:270,
         margin: theme.spacing(2),
-        width:300,
-
+        width:200,
+        backgroundColor:'red',
     },
     media: {
         height:100,
@@ -33,30 +37,36 @@ function RelatedDestCard(props){
     const classes = useStyles();
 
     return(
-        <Card className={classes.card}>
-        <CardHeader 
-            title={(<Typography variant='h6' onClick={()=> props.changeDest(props.id)}>{props.name}</Typography>)}
-        />
-        <CardMedia 
-                className={classes.media}
-                title={props.name}
-        >
-            <Carousel 
-                    showArrows={false} 
-                    showThumbs={false} 
-                    autoPlay={true} 
-                    infiniteLoop={true}
-                    showIndicators={false}
-                    showStatus={false} 
+        <div style={{margin:10}}>
+            <Card 
+                className={(props.selected === props.id) ? classes.cardSelected: classes.card}
             >
-                {props.images.map((image,index) => (
-                     
-                    <img key={index + 1} src={imagelocation + image} alt={props.name} height={100} width={300} />
-                ))}
-            </Carousel>
+                <CardHeader 
+                    title={(<Typography variant='subtitle2' onClick={()=> props.changeDest(props.id)}>{props.name}</Typography>)}
+                />
+            </Card>
+            <Card style={{marginLeft:50}}>
+                <CardMedia 
+                        className={classes.media}
+                        title={props.name}
+                >
+                    <Carousel 
+                            showArrows={false} 
+                            showThumbs={false} 
+                            autoPlay={true} 
+                            infiniteLoop={true}
+                            showIndicators={false}
+                            showStatus={false} 
+                    >
+                        {props.images.map((image,index) => (
 
-        </CardMedia>        
-    </Card>
+                            <img key={index + 1} src={imagelocation + image} alt={props.name} height={100} width={150} />
+                        ))}
+                    </Carousel>
+
+                </CardMedia>        
+            </Card>
+        </div>
     );
 }
 
@@ -78,15 +88,20 @@ export default class RelatedDestinations extends Component {
     }
 
     render(){
-        const relatedDestinations = this.state.destinations.map(dest => (
-            <RelatedDestCard
-                key={dest.pk}
-                id={dest.pk}
-                name={dest.name}
-                images={dest.images}
-                changeDest={this.props.changeDest}
-            />
-        ));
+        const relatedDestinations = this.state.destinations.map(dest => {
+            if(dest.pk !== this.props.selected){
+                
+               return(
+                <RelatedDestCard
+                    key={dest.pk}
+                    id={dest.pk}
+                    name={dest.name}
+                    images={dest.images}
+                    changeDest={this.props.changeDest}
+                    selected={this.props.selected} 
+                />); 
+            }
+        });
 
         return(
             <div>

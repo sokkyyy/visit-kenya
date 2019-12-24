@@ -166,9 +166,20 @@ export default class DestinationDetails extends Component {
                 
                 <Grid item xs={1}>
                 </Grid>
-                <Grid item xs={4}>
-                    <RelatedDestinations destination={this.state.destination.name} changeDest={this.handleChangeDestination} />
-                </Grid>
+                <Grid item xs={3}>
+                {loading ? 
+                (<div className='detailsLoader'> <AppLoader /> </div>):  
+                (                    
+                    <Paper>
+                        <Typography variant='h6'>Related Destinations</Typography>
+                        <RelatedDestinations 
+                            selected={this.state.destination.pk} 
+                            changeDest={this.handleChangeDestination}
+                            className='relDest' 
+                        />
+                    </Paper>
+                )}
+                </Grid> 
 
                 <Grid item xs>
 
