@@ -1,0 +1,8 @@
+.related-section {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+.related-grid {
+    height: 700px;
+}

@@ -171,11 +171,11 @@ export default class DestinationDetails extends Component {
                 (<div className='detailsLoader'> <AppLoader /> </div>):  
                 (                    
                     <Paper>
-                        <Typography variant='h6'>Related Destinations</Typography>
                         <RelatedDestinations 
                             selected={this.state.destination} 
                             changeDest={this.handleChangeDestination}
-                            className='relDest' 
+                            className='relDest'
+                            loading={this.state.loading} 
                         />
                     </Paper>
                 )}

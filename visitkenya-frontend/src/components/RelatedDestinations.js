@@ -7,6 +7,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography'; 
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import AppLoader from './AppLoader';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import '../css/RelatedDests.css';
+
+
 
 
 
@@ -104,8 +112,13 @@ export default class RelatedDestinations extends Component {
         });
 
         return(
-            <div>
-                {relatedDestinations}
+            <div className='related-section'>
+                <GridList cellHeight={180} className='related-grid'>
+                    <GridListTile key='Subheader' cols={2} style={{height:'auto'}}>
+                        <ListSubheader component='div'>RELATED DESTINATIONS</ListSubheader>
+                    </GridListTile>
+                    {this.props.loading ? (<AppLoader />) : relatedDestinations }
+                </GridList>
             </div>
         );
     }
