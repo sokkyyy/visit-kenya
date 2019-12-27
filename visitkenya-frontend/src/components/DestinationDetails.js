@@ -173,7 +173,7 @@ export default class DestinationDetails extends Component {
                     <Paper>
                         <Typography variant='h6'>Related Destinations</Typography>
                         <RelatedDestinations 
-                            selected={this.state.destination.pk} 
+                            selected={this.state.destination} 
                             changeDest={this.handleChangeDestination}
                             className='relDest' 
                         />

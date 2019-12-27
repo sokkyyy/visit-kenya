@@ -89,7 +89,7 @@ export default class RelatedDestinations extends Component {
 
     render(){
         const relatedDestinations = this.state.destinations.map(dest => {
-            if(dest.pk !== this.props.selected){
+            if((dest.pk !== this.props.selected.pk) && (dest.category === this.props.selected.category) ){
                 
                return(
                 <RelatedDestCard
