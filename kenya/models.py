@@ -10,7 +10,16 @@ class User(AbstractUser):
         return self.full_name
 
 class Destination(models.Model):
+
+    categories = [
+        ('national_parks','National Park'),
+        ('beaches', 'Beach'),
+        ('island_resorts', 'Island Resort'),
+        ('cultural_sites','Cultural Site'),
+    ]
+
     name = models.CharField(max_length=255)
+    category = models.CharField(max_length=100, choices=categories, default='national_parks')
     description = models.TextField()
     latitude = models.DecimalField(default=0.0000, max_digits=6, decimal_places=4)
     longitude = models.DecimalField(default=0.0000,max_digits=6, decimal_places=4)

@@ -47,4 +47,4 @@ class DestinationSerializer(serializers.ModelSerializer):
         
     class Meta: 
         model = Destination
-        fields = ['pk','name','description','images','latitude','longitude']  
+        fields = ['pk','name','category','description','images','latitude','longitude']  
