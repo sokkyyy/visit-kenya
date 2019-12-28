@@ -127,7 +127,7 @@ export default class DestinationDetails extends Component {
                 <Grid item xs={6}>
                 </Grid>
                 <Grid item xs={1}>
-                    <SideNav />
+                   
                 </Grid>
                 {loading ? 
                 (<div className='detailsLoader'> <AppLoader /> </div>):  

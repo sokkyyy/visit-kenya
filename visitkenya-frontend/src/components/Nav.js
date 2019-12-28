@@ -78,13 +78,15 @@ export default class Nav extends Component{
                 <AppBar position='fixed' color='inherit' style={{height:50}}>
                     <div className='navbar'>
                         <SideNavToggle toggleNav={this.handleToggleSideNav} toggleSideNav={this.state.toggleSideNav} />
-                        <a variant='h6'>VISIT KENYA</a>
+                        <a variant='h6' href='/home'>VISIT KENYA</a>
                         <div className='rightNav'>
                             {this.state.logged_in ? logged_in_nav : logged_out_nav}      
                         </div>
                     </div>
                 </AppBar>
-                {false ? '': <SideNav toggleSideNav={this.state.toggleSideNav} />}
+                <div className='sideNav'>
+                    <SideNav toggleSideNav={this.state.toggleSideNav} />
+                </div>
             </div>
         );
     }
