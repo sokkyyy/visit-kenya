@@ -29,17 +29,16 @@ export default class Login extends Component{
         event.preventDefault();
         // const credentials = this.state;
         // this.props.submit(credentials);   
-        this.handleLogin()
+        this.handleLogin();
     }
-
+    
     handleLogin(){
         userService.loginUser(this.state).then(response => {
-            localStorage.setItem('token',response.data.token);
-            this.props.submit();
-            this.props.history.push('/home');
+            localStorage.setItem('token',response.data.token); //set token in local storage
+            this.props.history.push('/home');//redirect to home page
         }).catch(()=>{
             alert('invalid credentials'); 
-        })
+        });
     }
 
     render(){

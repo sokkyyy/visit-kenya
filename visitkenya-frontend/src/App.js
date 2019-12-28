@@ -10,33 +10,16 @@ import DestinationDetails from './components/DestinationDetails';
 
 
 export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      logged_in : localStorage.getItem('token') ? true : false,
-    };
-    this.handleLogout = this.handleLogout.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(){
-    this.setState({logged_in:true});
-  }
-  
 
 
-  handleLogout(){
-    localStorage.removeItem('token');
-    this.setState({logged_in:false});
-  }
+
 
   render(){
     return (
       <BrowserRouter>
-        <Nav logged_in={this.state.logged_in} logout_user={this.handleLogout}></Nav>
           <Route path='/register' exact component={Registration}></Route>
-          <Route path='/login' exact render={(props)=> <Login {...props} submit={this.handleSubmit}></Login> }></Route>
-          <Route path='/home' exact render={(props)=> <Home {...props} sup={this.state.logged_in}></Home>} ></Route>
+          <Route path='/login' exact component={Login}></Route> 
+          <Route path='/home' exact component={Home}></Route>
           <Route path='/destination/:id' component={DestinationDetails}></Route>
       </BrowserRouter>      
     );

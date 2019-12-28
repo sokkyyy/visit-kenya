@@ -10,8 +10,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GalleryModal from './GalleryModal';
 import RelatedDestinations from './RelatedDestinations';
 import AppLoader from './AppLoader';
-
-
+import SideNav from './SideNav';
+import Nav from './Nav';
 
 const destinationService = new DestinationService();
 const imagelocation = 'http://localhost:8000';
@@ -115,16 +115,19 @@ export default class DestinationDetails extends Component {
 
         return(
 
-
+            <div>
+            <Nav />
             <Grid container spacing={3}>
                 <Grid item xs={12}>
+
                 </Grid>
+                
                 <Grid item xs={6}>
                 </Grid>
                 <Grid item xs={6}>
                 </Grid>
                 <Grid item xs={1}>
-                    
+                    <SideNav />
                 </Grid>
                 {loading ? 
                 (<div className='detailsLoader'> <AppLoader /> </div>):  
@@ -186,6 +189,7 @@ export default class DestinationDetails extends Component {
                 </Grid>
 
           </Grid>
+          </div>
         );
     }
 }
