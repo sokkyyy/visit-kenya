@@ -126,7 +126,7 @@ export default class DestinationDetails extends Component {
                 </Grid>
                 <Grid item xs={6}>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={2}>
                    
                 </Grid>
                 {loading ? 
@@ -166,9 +166,7 @@ export default class DestinationDetails extends Component {
                 )
                 }
 
-                
-                <Grid item xs={1}>
-                </Grid>
+
                 <Grid item xs={3}>
                 {loading ? 
                 (<div className='detailsLoader'> <AppLoader /> </div>):  
