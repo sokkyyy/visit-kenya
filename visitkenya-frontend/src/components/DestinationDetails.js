@@ -10,7 +10,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GalleryModal from './GalleryModal';
 import RelatedDestinations from './RelatedDestinations';
 import AppLoader from './AppLoader';
-import SideNav from './SideNav';
 import Nav from './Nav';
 
 const destinationService = new DestinationService();
@@ -126,7 +125,7 @@ export default class DestinationDetails extends Component {
                 </Grid>
                 <Grid item xs={6}>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} >
                    
                 </Grid>
                 {loading ? 

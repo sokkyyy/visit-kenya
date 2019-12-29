@@ -5,8 +5,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography'; 
 import Skeleton from '@material-ui/lab/Skeleton';
-import Carousel from 'react-material-ui-carousel'; 
-
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 // MAKE STYLES FOR SKELETON AND CARD
 const useStyles = makeStyles(theme => ({
     card: {

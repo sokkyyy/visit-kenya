@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import DehazeIcon from '@material-ui/icons/Dehaze';
+import DehazeIcon from '@material-ui/icons/Dehaze'; 
 import '../css/Nav.css';
 import { makeStyles } from '@material-ui/core/styles';
 import SideNav from './SideNav';
