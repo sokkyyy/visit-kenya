@@ -4,8 +4,28 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import cover1 from '../images/vk5.jpg';
 import cover2 from '../images/vk3.jpg';
+import topLeft from '../images/topLeft.png';
+import topRight from '../images/topRight.png';
+import bottomLeft from '../images/bottomLeft.png';
+import bottomRight from '../images/bottomRight.png';
+import triangle from '../images/triangle.png';
 import '../css/Home.css';
 import Grid from '@material-ui/core/Grid';
+
+
+
+
+function CarouselOverlay(){
+  return(
+    <div className='carousel-overlay'>
+      <img src={topLeft} alt='topLeft' />
+      <img src={topRight} alt='topRight' className='topRight' />
+      <img src={bottomLeft} alt='bottomLeft' className='bottomLeft' />
+      <img src={bottomRight} alt='bottomRight' className='bottomRight' />
+      <img src={triangle} alt='triangle' className='triangle' />
+    </div>
+  )
+}
 
 
 
@@ -42,7 +62,7 @@ export default class Home extends Component {
 
         <Grid item xs={12} >
           <div>        
-            <div className='carousel-overlay'>rerer</div>
+            <CarouselOverlay />
             <Carousel 
               animation='slide' 
               dynamicHeight={true} 
