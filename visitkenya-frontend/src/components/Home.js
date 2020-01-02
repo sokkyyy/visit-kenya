@@ -20,7 +20,7 @@ import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'; 
 import { GridList } from "@material-ui/core";
-
+import Footer from './Footer';
 
 
 
@@ -109,7 +109,7 @@ export default class Home extends Component {
           </div>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} ref={this.myRef}>
           <div className='about-us'>
             <Paper elevation={0 } > 
               <Typography variant='h4' className='about-heading'>Visit Our Country</Typography>
@@ -124,14 +124,14 @@ export default class Home extends Component {
           </div>
 
         </Grid>
-
+{/* 
         <Grid item xs={12}>
-          <div className='dest' ref={this.myRef}>
+          <div className='dest' >
             <DestinationList />
           </div>
-        </Grid>
+        </Grid> */}
         
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{marginTop: 50}}>
           <Carousel
             dynamicHeight={true} 
             showArrows={true} 
@@ -234,12 +234,9 @@ export default class Home extends Component {
           </Carousel>
         </Grid>
         <Grid item xs={12}>
-        
+          <Footer />
         </Grid>
-        <Grid item xs={6}>
-        </Grid>
-        <Grid item xs={6}>
-        </Grid>
+
       </Grid>
 
 
