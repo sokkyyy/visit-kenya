@@ -1,9 +1,46 @@
+.app-bar {
+
+}
 .navbar {
     display: flex;
     flex-direction: row;
+    align-items: stretch;
 }
 .sideNav {
     position:fixed;
     z-index:1;
     margin-top:60px;
+    
+}
+.sideNav-toggle{
+    flex-grow: 1;
+    cursor: pointer;
+}
+.nav-logo{
+    font-family: 'Monoton', cursive;
+    font-size: 30px;
+    display: inline-block;
+    flex-grow: 90;
+    text-align: center;
+    padding-top: 10px;
+
+}
+.nav-logo-in:hover{
+    color: black;
+}
+.rightNav {
+  flex-grow: 1;
+  padding-top: 10px;
+}
+.active-logo {
+    
+    color: black;
+    
+}
+.item{
+    cursor: pointer;
+    color: cornflowerblue;
+}
+.item:hover{
+    color: black;
 }

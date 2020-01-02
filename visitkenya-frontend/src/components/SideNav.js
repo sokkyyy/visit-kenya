@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
     root:{
         width:150,
         backgroundColor: theme.palette.background.paper,
+        color:'black',
     },
 }));
 

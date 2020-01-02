@@ -4,6 +4,7 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 import '../css/Nav.css';
 import { makeStyles } from '@material-ui/core/styles';
 import SideNav from './SideNav';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -11,7 +12,8 @@ const useStyles = makeStyles(theme => ({
     toggleNav: {
         transition: theme.transitions.create(['transform'],{
             duration:theme.transitions.duration.short
-        })
+        }),
+        cursor:'pointer',
     },
     toggleNavOpen:{
         transform: 'rotate(-180deg)'
@@ -51,7 +53,6 @@ export default class Nav extends Component{
     handleLogout(){
         localStorage.removeItem('token');
         this.setState({logged_in:false});
-        this.props.history.push('/login');
     }
 
     handleToggleSideNav(){
@@ -62,23 +63,25 @@ export default class Nav extends Component{
     render(){
         const logged_out_nav = (
             <div>
-                <a href='/login'>Log In</a>
-                <a href='/register'>Sign Up</a>
+                <NavLink to='/login'>Log In</NavLink>
+                <NavLink to='/register'>Sign Up</NavLink>
             </div>
         );
 
         const logged_in_nav = (
             <div>
-                <a role='listitem' className='item' onClick={this.handleLogout}> Logout</a> 
+                <div className='item' onClick={this.handleLogout}> Logout</div> 
             </div>
         );
 
         return(
             <div>
-                <AppBar position='fixed' color='inherit' style={{height:50}}>
+                <AppBar position='fixed' color='inherit' style={{height:50}} className='app-bar'>
                     <div className='navbar'>
-                        <SideNavToggle toggleNav={this.handleToggleSideNav} toggleSideNav={this.state.toggleSideNav} />
-                        <a variant='h6' href='/home'>VISIT KENYA</a>
+                        <SideNavToggle toggleNav={this.handleToggleSideNav} toggleSideNav={this.state.toggleSideNav} className='sideNav-toggle' />
+                        <div className='nav-logo'>
+                            <NavLink to='/home' className='nav-logo-in'  activeClassName='active-logo'>VISIT KENYA</NavLink>
+                        </div>
                         <div className='rightNav'>
                             {this.state.logged_in ? logged_in_nav : logged_out_nav}      
                         </div>
