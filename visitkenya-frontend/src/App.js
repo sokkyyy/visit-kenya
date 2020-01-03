@@ -7,6 +7,8 @@ import './App.css';
 import Home from './components/Home';
 import Nav from './components/Nav';
 import DestinationDetails from './components/DestinationDetails';
+import DestinationCategory from './components/DestinationCategory';
+
 
 
 export default class App extends Component {
@@ -21,6 +23,7 @@ export default class App extends Component {
           <Route path='/login' exact component={Login}></Route> 
           <Route path='/home' exact component={Home}></Route>
           <Route path='/destination/:id' component={DestinationDetails}></Route>
+          <Route path='/destinations/:category' component={DestinationCategory}></Route>
       </BrowserRouter>      
     );
   }

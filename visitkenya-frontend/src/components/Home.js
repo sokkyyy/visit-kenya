@@ -21,7 +21,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'; 
 import { GridList } from "@material-ui/core";
 import Footer from './Footer';
-
+import  {NavLink}  from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 
 function CarouselOverlay(props){
@@ -158,7 +159,9 @@ export default class Home extends Component {
                     Each of these national parks have a unique character and feel, <br />
                     so take out your cameras and get ready to capture and explore! <br />
                   </p>
-                  <button>View Destinations</button>
+                  <NavLink to='/destinations/national_parks'>
+                    <Button variant='outlined'>View Destinations</Button>
+                  </NavLink> 
                 </div>
               </Grid>
               <Grid item xs={6}>
@@ -183,7 +186,9 @@ export default class Home extends Component {
                     There's enough breeze for sailing and wind-powered adventure sports, <br />
                     but not so much that it's going to blow you away. <br />
                   </p>
-                  <button>View Destinations</button>
+                  <NavLink to='/destinations/beaches'>
+                    <Button variant='outlined'>View Destinations</Button>
+                  </NavLink> 
                 </div>
               </Grid>
             </div>
@@ -199,7 +204,9 @@ export default class Home extends Component {
                     cultural, historical, natural and archaeological value. <br />
                     These world heritage sites combine to form the ultimate quintessence of the nation. <br />
                   </p>
-                  <button>View Destinations</button>
+                  <NavLink to='/destinations/cultural_sites'>
+                    <Button variant='outlined'>View Destinations</Button>
+                  </NavLink> 
                 </div>
                 
               </Grid>
@@ -227,7 +234,9 @@ export default class Home extends Component {
                     From Naivasha to Kisumu and all the way up to the North,<br />
                     Island Resorts can be found.<br />
                   </p>
-                  <button>View Destinations</button>
+                  <NavLink to='/destinations/island'>
+                    <Button variant='outlined'>View Destinations</Button>
+                  </NavLink> 
                 </div>
               </Grid>
             </div>
