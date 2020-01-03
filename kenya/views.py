@@ -14,6 +14,20 @@ def current_user(request):
     serializer = UserSerializer(request.user)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def user_details(request,username):
+    '''
+    Retrieve a user by username.
+    '''
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = UserSerializer(user,context={'request':request})
+        return Response(serializer.data)
+
 class UserList(APIView):
     '''
     Create new user.
@@ -44,18 +58,10 @@ def get_destination(request,destination_id):
     destination = Destination.objects.get(pk=destination_id)
     serializers = DestinationSerializer(destination)
     return Response(serializers.data)
-
-
-@api_view(['GET'])
-def user_details(request,username):
-    '''
-    Retrieve a user by username.
-    '''
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
     
-    if request.method == 'GET':
-        serializer = UserSerializer(user,context={'request':request})
-        return Response(serializer.data)
+@api_view(['GET'])
+def get_destinations_category(request, destination_category):
+    destinations = Destination.objects.filter(category=destination_category)
+    serializers = DestinationSerializer(destinations, many=True)
+    return Response(serializers.data)
+
