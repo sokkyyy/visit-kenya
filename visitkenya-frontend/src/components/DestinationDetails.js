@@ -19,7 +19,7 @@ function DestGallery(props){
     return(
         <Carousel showArrows={true} showThumbs={false}>
             {props.images.map((image,index)=>(
-                <div key={index + 1} onClick={props.openModal}>
+                <div key={index + 1} onClick={props.openModal} style={{cursor:'pointer'}}>
                     <img src={imagelocation + image} alt={props.name} height={250} width={300} />                    
                 </div>
             ))}
@@ -133,11 +133,11 @@ export default class DestinationDetails extends Component {
                 (
                     <Grid item xs={6} className='destDetails'>
                         <Paper className='title'>
-                            <Typography variant='h4'>{this.state.destination.name}</Typography>
-                            <Typography>{this.state.destination.description}</Typography>
+                            <Typography variant='h4' style={{fontFamily:'Mali, cursive'}}>{this.state.destination.name}</Typography>
+                            <Typography style={{fontFamily:'Mali, cursive'}}>{this.state.destination.description}</Typography>
                         </Paper>
 
-                        <Typography variant='h6'>Gallery</Typography>
+                        <Typography variant='h6' style={{fontFamily:'Mali, cursive'}}>Gallery</Typography>
 
                         <DestGallery
                             openModal={this.handleOpenModal}
@@ -154,7 +154,7 @@ export default class DestinationDetails extends Component {
                             moveNext={this.handleMoveNext}
                         />
 
-                        <Typography variant='h6'>Location</Typography>
+                        <Typography variant='h6' style={{fontFamily:'Mali, cursive'}}>Location</Typography>
 
                         <DestinationLocation
                             name={this.state.destination.name}

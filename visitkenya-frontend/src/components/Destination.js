@@ -7,13 +7,26 @@ import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import  {Link}  from 'react-router-dom';
+import AppLoader from './AppLoader';
+
 // MAKE STYLES FOR SKELETON AND CARD
 const useStyles = makeStyles(theme => ({
     card: {
-        maxWidth:345,
+        maxWidth:200,
         margin: theme.spacing(2),
-        width:300,
+        width:200,
 
+    },
+    cardHeader: {
+        height:50,  
+    },
+    headerLink:{
+        fontSize:12,
+        fontFamily:'Mali, cursive',
+        '&:hover': {
+            color:'black', 
+        }
     },
     media: {
         height:190,
@@ -28,10 +41,11 @@ function CardDest(props){
 
     return (
         <Card className={classes.card}>
-            <CardHeader 
+            <CardHeader
+                className={classes.cardHeader} 
                 title={props.loading ? 
                 (<Skeleton variant='text' height={100} width='80%' />):
-                (<a href={`destination/${props.id}`}><Typography variant='h6'>{props.name}</Typography></a>)}
+                (<Link to={`/destination/${props.id}`} className={classes.headerLink}>{props.name}</Link>)}
             />
             {props.loading ? 
                 (<Skeleton variant='rect' className={classes.media} />) :
@@ -42,7 +56,7 @@ function CardDest(props){
                         <Carousel animation='slide'>
                             {props.images.map((image,index) => (
                                  
-                                <img key={index + 1} src={imagelocation + image} alt={props.name} height={190} width={300} />
+                                <img key={index + 1} src={imagelocation + image} alt={props.name} height={190} width={200} />
                             ))}
                         </Carousel>
 

@@ -6,9 +6,9 @@ function AppLoader(){
     return(
         <Loader
             type="TailSpin"
-            color="#00BFFF"
-            height={100}
-            width={100}
+            color="black"
+            height={50}
+            width={50}
         />
     );
 }

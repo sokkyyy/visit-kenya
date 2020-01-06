@@ -1,8 +1,10 @@
 .destDetails{
     margin: 30px;
+    
 }
 .title{
     margin-bottom: 10px;
+    font-family: 'Mali', cursive;
 }
 .location{
     margin-top: 50px;
@@ -10,6 +12,7 @@
 }
 body {
     height: 150%;
+    font-family: 'Mali', cursive !important;
 }
 .detailsLoader{
     padding-top: 200px;

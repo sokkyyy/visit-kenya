@@ -36,6 +36,14 @@ const useStyles = makeStyles(theme => ({
     media: {
         height:100,
     },
+    header: {
+        cursor:'pointer',
+        color:'black',
+        '&:hover':{
+            color:'#64B6F5',
+        },
+        fontFamily: 'Mali, cursive',
+    }
 
 }));
 
@@ -50,7 +58,7 @@ function RelatedDestCard(props){
                 className={(props.selected === props.id) ? classes.cardSelected: classes.card}
             >
                 <CardHeader 
-                    title={(<Typography variant='subtitle2' onClick={()=> props.changeDest(props.id)}>{props.name}</Typography>)}
+                    title={(<Typography className={classes.header} variant='subtitle2' onClick={()=> props.changeDest(props.id)}>{props.name}</Typography>)}
                 />
             </Card>
             <Card style={{marginLeft:50}}>
