@@ -38,8 +38,10 @@ export default function DestinationCategory(props){
     const classes = useStyles();
 
     const fetchCategoryDestinations = () => {
-        
+
         setLoading(true);
+
+
 
         destinationService.getDestinationsCategory(params.category)
         .then(response => {
@@ -49,8 +51,8 @@ export default function DestinationCategory(props){
             }, 500);
         })
         .catch(error => console.log(error));
-        
-        
+
+
         console.log(destinations);
     }
     const changeCategoryName = () => {
@@ -64,11 +66,11 @@ export default function DestinationCategory(props){
             setCategory('Cultural Site');
         }
     }
-    
+
     useEffect(() => {
         fetchCategoryDestinations();
         changeCategoryName();
-        
+
     },[params.category]);
 
     return(
@@ -87,7 +89,7 @@ export default function DestinationCategory(props){
 
                 <div className={classes.categoryDisplay}>
                     {destinations.map((dest)=>(
-                        <Destination 
+                        <Destination
                             key={dest.pk}
                             id={dest.pk}
                             name={dest.name}
@@ -99,7 +101,7 @@ export default function DestinationCategory(props){
                 )}
             </Grid>
 
-           
+
 
         </Grid>
 

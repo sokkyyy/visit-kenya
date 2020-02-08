@@ -1,5 +1,5 @@
 virtual
-.pyc*
+*.pyc
 node_modules
 .vscode
 vk-front
