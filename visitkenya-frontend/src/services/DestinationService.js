@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 
-const apiUrl = 'http://localhost:8000/api/destinations/';
+// const apiUrl = 'http://localhost:8000/api/destinations/'; //DEV
+
+const apiUrl =  'https://visitkenya.herokuapp.com/api/destinations/' //PROD
+
+
 //Place in .env file during refactor
 const anonymousToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFub255bW91cyIsImV4cCI6MTU3ODM4ODI3OCwiZW1haWwiOiJhbm9ueW1vdXNAZ21haWwuY29tIn0.Wmrsg8LB2aM0ZvkDE1yDdsmuWX4Wgja6z0MQWFzK6fI"
 const userToken = localStorage.getItem('token');

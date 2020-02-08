@@ -13,14 +13,15 @@ import AppLoader from './AppLoader';
 import Nav from './Nav';
 
 const destinationService = new DestinationService();
-const imagelocation = 'http://localhost:8000';
+// const imagelocation = 'http://localhost:8000';
+const imagelocation =  'https://visitkenya.herokuapp.com' //PROD
 
 function DestGallery(props){
     return(
         <Carousel showArrows={true} showThumbs={false}>
             {props.images.map((image,index)=>(
                 <div key={index + 1} onClick={props.openModal} style={{cursor:'pointer'}}>
-                    <img src={imagelocation + image} alt={props.name} height={250} width={300} />                    
+                    <img src={imagelocation + image} alt={props.name} height={250} width={300} />
                 </div>
             ))}
         </Carousel>
@@ -51,11 +52,11 @@ export default class DestinationDetails extends Component {
         .then(response => {
             setTimeout(()=>{
                 this.setState({destination:response.data});
-                this.setState({loading:false});                
+                this.setState({loading:false});
             }, 500);
         })
-        .catch(error => console.log(error)); 
-        
+        .catch(error => console.log(error));
+
     }
 
 
@@ -71,14 +72,14 @@ export default class DestinationDetails extends Component {
     }
 
     handleMovePrev(){
-        const { photoIndex, destination } = this.state; 
+        const { photoIndex, destination } = this.state;
         this.setState({
-            photoIndex:(photoIndex + destination.images.length - 1) % destination.images.length, 
+            photoIndex:(photoIndex + destination.images.length - 1) % destination.images.length,
         });
     }
 
     handleMoveNext(){
-        const { photoIndex, destination } = this.state; 
+        const { photoIndex, destination } = this.state;
 
         this.setState({
             photoIndex: (photoIndex + 1) % destination.images.length,
@@ -98,7 +99,7 @@ export default class DestinationDetails extends Component {
             this.setState({destination:response.data});
             this.setState({loading:false});
         })
-        .catch(error => console.log(error));        
+        .catch(error => console.log(error));
 
     }
 
@@ -120,16 +121,16 @@ export default class DestinationDetails extends Component {
                 <Grid item xs={12}>
 
                 </Grid>
-                
+
                 <Grid item xs={6}>
                 </Grid>
                 <Grid item xs={6}>
                 </Grid>
                 <Grid item xs={2} >
-                   
+
                 </Grid>
-                {loading ? 
-                (<div className='detailsLoader'> <AppLoader /> </div>):  
+                {loading ?
+                (<div className='detailsLoader'> <AppLoader /> </div>):
                 (
                     <Grid item xs={6} className='destDetails'>
                         <Paper className='title'>
@@ -141,15 +142,15 @@ export default class DestinationDetails extends Component {
 
                         <DestGallery
                             openModal={this.handleOpenModal}
-                            images={this.state.destination.images?this.state.destination.images:[]} 
-                            name={this.state.destination.name} 
+                            images={this.state.destination.images?this.state.destination.images:[]}
+                            name={this.state.destination.name}
                         />
 
                         <GalleryModal
-                            images={this.state.destination.images ? this.state.destination.images : []} 
-                            isOpen={this.state.isOpen} 
+                            images={this.state.destination.images ? this.state.destination.images : []}
+                            isOpen={this.state.isOpen}
                             photoIndex={this.state.photoIndex}
-                            closeModal={this.handleCloseModal} 
+                            closeModal={this.handleCloseModal}
                             movePrev={this.handleMovePrev}
                             moveNext={this.handleMoveNext}
                         />
@@ -167,19 +168,19 @@ export default class DestinationDetails extends Component {
 
 
                 <Grid item xs={3}>
-                {loading ? 
-                (<div className='detailsLoader'> <AppLoader /> </div>):  
-                (                    
+                {loading ?
+                (<div className='detailsLoader'> <AppLoader /> </div>):
+                (
                     <Paper>
-                        <RelatedDestinations 
-                            selected={this.state.destination} 
+                        <RelatedDestinations
+                            selected={this.state.destination}
                             changeDest={this.handleChangeDestination}
                             className='relDest'
-                            loading={this.state.loading} 
+                            loading={this.state.loading}
                         />
                     </Paper>
                 )}
-                </Grid> 
+                </Grid>
 
                 <Grid item xs>
 

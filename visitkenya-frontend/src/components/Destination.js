@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography'; 
+import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -19,13 +19,13 @@ const useStyles = makeStyles(theme => ({
 
     },
     cardHeader: {
-        height:50,  
+        height:50,
     },
     headerLink:{
         fontSize:12,
         fontFamily:'Mali, cursive',
         '&:hover': {
-            color:'black', 
+            color:'black',
         }
     },
     media: {
@@ -34,7 +34,8 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const imagelocation = 'http://localhost:8000';
+// const imagelocation = 'http://localhost:8000';
+const imagelocation =  'https://visitkenya.herokuapp.com' //PROD
 
 function CardDest(props){
     const classes = useStyles();
@@ -42,20 +43,20 @@ function CardDest(props){
     return (
         <Card className={classes.card}>
             <CardHeader
-                className={classes.cardHeader} 
-                title={props.loading ? 
+                className={classes.cardHeader}
+                title={props.loading ?
                 (<Skeleton variant='text' height={100} width='80%' />):
                 (<Link to={`/destination/${props.id}`} className={classes.headerLink}>{props.name}</Link>)}
             />
-            {props.loading ? 
+            {props.loading ?
                 (<Skeleton variant='rect' className={classes.media} />) :
-                (<CardMedia 
+                (<CardMedia
                     className={classes.media}
                     title={props.name}
                     >
                         <Carousel animation='slide'>
                             {props.images.map((image,index) => (
-                                 
+
                                 <img key={index + 1} src={imagelocation + image} alt={props.name} height={190} width={200} />
                             ))}
                         </Carousel>
@@ -63,7 +64,7 @@ function CardDest(props){
                     </CardMedia>)
             }
 
-            
+
         </Card>
     )
 }

@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const APIURL = 'http://localhost:8000/api/';
+// const APIURL = 'http://localhost:8000/api/'; //DEV
+
+
+const APIURL =  'https://visitkenya.herokuapp.com/api/destinations/' //PROD
 
 export default class UserService{
 
@@ -12,12 +15,12 @@ export default class UserService{
 
     loginUser(data){
         const url = `${APIURL}token-auth/`;
-        return axios.post(url,data); 
+        return axios.post(url,data);
     }
 
     getUser(){
         const url = `${APIURL}current_user/`;
-        
+
         return axios.get(url,{
             headers:{ Authorization: `JWT ${localStorage.getItem('token')}` }
         });
