@@ -26,12 +26,12 @@ function SideNavOptions(props){
                 <ListItem button  component={NavLink} to='/destinations/beaches'>
                   <ListItemText primary="Beaches" />
                 </ListItem>
-                <ListItem button  component={NavLink} to='/destinations/island'>
+                <ListItem button  component={NavLink} to='/destinations/island_resorts'>
                   <ListItemText primary="Island Resorts" />
                 </ListItem>
                 <ListItem button component={NavLink} to='/destinations/cultural_sites'>
                   <ListItemText primary="Cultural Sites" />
-                </ListItem>                
+                </ListItem>
 
             </List>
         </div>

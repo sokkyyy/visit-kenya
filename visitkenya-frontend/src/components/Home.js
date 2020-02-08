@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid';
 import Nav from './Nav';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography'; 
+import Typography from '@material-ui/core/Typography';
 import { GridList } from "@material-ui/core";
 import Footer from './Footer';
 import  {NavLink}  from 'react-router-dom';
@@ -42,7 +42,7 @@ function CarouselOverlay(props){
 
 
 export default class Home extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -68,7 +68,7 @@ export default class Home extends Component {
       this.setState({navVisible:false});
     }
   }
-  
+
   handleNavigate(){
     //Scroll to this.myRef
     window.scrollTo(0, this.myRef.current.offsetTop);
@@ -80,22 +80,22 @@ export default class Home extends Component {
 
     return (
       <div>
-      
-   
+
+
       <Slide direction="up" in={this.state.navVisible} mountOnEnter unmountOnExit>
         <Nav />
-      </Slide> 
+      </Slide>
 
 
       <Grid container spacing={3}>
 
         <Grid item xs={12} >
-          <div>        
+          <div>
             <CarouselOverlay navigateDown={this.handleNavigate} />
-            <Carousel 
-              animation='slide' 
-              dynamicHeight={true} 
-              showArrows={false} 
+            <Carousel
+              animation='slide'
+              dynamicHeight={true}
+              showArrows={false}
               showStatus={false}
               showIndicators={false}
               showThumbs={false}
@@ -112,30 +112,30 @@ export default class Home extends Component {
 
         <Grid item xs={12} ref={this.myRef}>
           <div className='about-us'>
-            <Paper elevation={0 } > 
+            <Paper elevation={0 } >
               <Typography variant='h4' className='about-heading'>Visit Our Country</Typography>
               <hr className='line-separator' />
               <p className='about-description'>
                 Tourism in Kenya is the second-largest source of foreign exchange revenue following agriculture.<br />
                 Beach tourism, eco-tourism, cultural tourism, and sports tourism are all part of the tourism sector in Kenya.<br />
-                Visit Kenya aims to bridge the gap between tourists and the popular tourist destinations in Kenya by allowing<br /> 
-                them to familiarize with these places. You can find our categories below.<br />  
+                Visit Kenya aims to bridge the gap between tourists and the popular tourist destinations in Kenya by allowing<br />
+                them to familiarize with these places. You can find our categories below.<br />
               </p>
-            </Paper>  
+            </Paper>
           </div>
 
         </Grid>
-{/* 
+{/*
         <Grid item xs={12}>
           <div className='dest' >
             <DestinationList />
           </div>
         </Grid> */}
-        
+
         <Grid item xs={12} style={{marginTop: 50}}>
           <Carousel
-            dynamicHeight={true} 
-            showArrows={true} 
+            dynamicHeight={true}
+            showArrows={true}
             showStatus={true}
             showIndicators={false}
             showThumbs={false}
@@ -143,7 +143,7 @@ export default class Home extends Component {
             autoPlay={true}
             transitionTime={1000}
             interval={8000}
-            
+
           >
 
             <div className='category-box'>
@@ -161,7 +161,7 @@ export default class Home extends Component {
                   </p>
                   <NavLink to='/destinations/national_parks'>
                     <Button variant='outlined'>View Destinations</Button>
-                  </NavLink> 
+                  </NavLink>
                 </div>
               </Grid>
               <Grid item xs={6}>
@@ -188,7 +188,7 @@ export default class Home extends Component {
                   </p>
                   <NavLink to='/destinations/beaches'>
                     <Button variant='outlined'>View Destinations</Button>
-                  </NavLink> 
+                  </NavLink>
                 </div>
               </Grid>
             </div>
@@ -206,9 +206,9 @@ export default class Home extends Component {
                   </p>
                   <NavLink to='/destinations/cultural_sites'>
                     <Button variant='outlined'>View Destinations</Button>
-                  </NavLink> 
+                  </NavLink>
                 </div>
-                
+
               </Grid>
 
               <Grid item xs={6}>
@@ -221,7 +221,7 @@ export default class Home extends Component {
               <Grid item xs={6}>
                 <img src={island} alt='island' className='home-category' />
               </Grid>
-              
+
               <Grid item xs={6}>
                 <div className='category-description'>
                   <h5>Island Resorts</h5>
@@ -234,9 +234,9 @@ export default class Home extends Component {
                     From Naivasha to Kisumu and all the way up to the North,<br />
                     Island Resorts can be found.<br />
                   </p>
-                  <NavLink to='/destinations/island'>
+                  <NavLink to='/destinations/island_resorts'>
                     <Button variant='outlined'>View Destinations</Button>
-                  </NavLink> 
+                  </NavLink>
                 </div>
               </Grid>
             </div>
