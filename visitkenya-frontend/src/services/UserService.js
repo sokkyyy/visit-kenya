@@ -3,9 +3,9 @@ import axios from 'axios';
 // const APIURL = 'http://localhost:8000/api/'; //DEV
 
 
-const APIURL =  'https://visitkenya.herokuapp.com/api/destinations/' //PROD
+const APIURL =  'https://visitkenya.herokuapp.com/api/'; //PROD
 
-export default class UserService{
+export default class UserService {
 
 
     registerUser(user){
